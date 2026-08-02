@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A short note on memory effects in structured quantum reservoirs.">
+  <title>Why Structured Reservoirs Remember | Carlos A. González-Gutiérrez</title>
+
+  <link rel="stylesheet" href="blog.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]],
+        tags: "ams"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Blog navigation">
+      <a href="../">Carlos A. González-Gutiérrez</a>
+      <div class="nav-links">
+        <a href="../#research">Research</a>
+        <a href="./">Notes</a>
+        <a href="../#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <header class="article-header">
+      <p class="eyebrow">Open quantum systems</p>
+      <h1>Why structured reservoirs remember</h1>
+
+      <div class="article-meta">
+        <time datetime="2026-08-01">August 1, 2026</time>
+        <span>·</span>
+        <span>8 min read</span>
+      </div>
+
+      <p class="article-deck">
+        The spectral structure of an environment determines whether an emitter
+        forgets its past quickly or retains a measurable memory of it.
+      </p>
+    </header>
+
+    <article class="article-body">
+      <p>
+        A useful starting point is a two-level emitter coupled to a continuum
+        of bosonic modes. In the rotating-wave approximation, the Hamiltonian
+        can be written as
+      </p>
+
+      <div class="equation-note">
+        \[
+        \hat H =
+        \frac{\omega_q}{2}\hat\sigma_z
+        + \int dk\,\omega_k \hat a_k^\dagger \hat a_k
+        + \int dk\,
+        \left(
+          g_k \hat\sigma_+ \hat a_k
+          + g_k^* \hat a_k^\dagger \hat\sigma_-
+        \right).
+        \tag{1}
+        \]
+      </div>
+
+      <p>
+        The environment enters the reduced dynamics through the dispersion
+        relation \(\omega_k\) and the couplings \(g_k\). These quantities are
+        commonly summarized by the spectral density
+      </p>
+
+      <div class="equation-note">
+        \[
+        J(\omega)
+        =
+        2\pi\int dk\,|g_k|^2\,
+        \delta\!\left(\omega-\omega_k\right).
+        \tag{2}
+        \]
+      </div>
+
+      <h2>From a spectrum to a memory kernel</h2>
+
+      <p>
+        In the single-excitation sector, eliminating the field amplitudes
+        produces an integro-differential equation for the excited-state
+        amplitude \(c_e(t)\):
+      </p>
+
+      <div class="equation-note">
+        \[
+        \dot c_e(t)
+        =
+        -\int_0^t d\tau\,
+        K(t-\tau)c_e(\tau),
+        \qquad
+        K(t)
+        =
+        \frac{1}{2\pi}
+        \int d\omega\,J(\omega)
+        e^{-i(\omega-\omega_q)t}.
+        \tag{3}
+        \]
+      </div>
+
+      <p>
+        The kernel \(K(t)\) measures how strongly the present evolution depends
+        on earlier values of the amplitude. A broad and nearly flat spectrum
+        generally gives a sharply localized kernel. A band edge, a narrow
+        resonance, a time delay, or another strong spectral feature can instead
+        produce a kernel with a long temporal tail.
+      </p>
+
+      <figure class="article-figure">
+        <img src="../research-structured-environments.png"
+             alt="Conceptual illustration of two emitters interacting through a structured quantum environment">
+        <figcaption>
+          A structured environment can combine frequency-dependent propagation
+          with delayed interactions between spatially separated emitters.
+        </figcaption>
+      </figure>
+
+      <h2>What changes physically?</h2>
+
+      <p>
+        Once the environment has a significant memory time, the dynamics need
+        not be a simple exponential. Depending on the system, one may encounter
+        oscillatory decay, partial population trapping, delayed revivals, or
+        long-lived emitter–field bound states.
+      </p>
+
+      <blockquote>
+        The environment is not only a sink for excitations. Its geometry and
+        spectrum can become active ingredients in the quantum dynamics.
+      </blockquote>
+
+      <p>
+        This point is especially useful in waveguide QED, where dispersion,
+        propagation distance, and the spatial structure of an emitter can all
+        be engineered. In such systems, non-Markovian behavior is often easier
+        to understand by looking directly at the spectrum and the relevant
+        propagation times.
+      </p>
+
+      <h2>A practical diagnostic</h2>
+
+      <p>
+        Before applying a Markov approximation, it is useful to compare the
+        characteristic variation scale of \(J(\omega)\) with the linewidth
+        expected for the emitter. One should also compare propagation delays
+        with the emitter lifetime. When these scales are not well separated,
+        retaining the full frequency dependence or the explicit time delay is
+        usually the safer description.
+      </p>
+
+      <h2>References and further reading</h2>
+
+      <ol class="references">
+        <li>Add a textbook, review article, or paper relevant to the post.</li>
+        <li>Add links to your own papers when the note develops one of their ideas.</li>
+      </ol>
+
+      <a class="back-link" href="./">← Back to all notes</a>
+    </article>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Carlos A. González-Gutiérrez
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
