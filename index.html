@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Carlos A. González-Gutiérrez — research in quantum optics, waveguide QED, and quantum magnonics.">
+  <title>Carlos A. González-Gutiérrez | Quantum Physics</title>
+
+  <style>
+    :root {
+      --background: #f8f8f6;
+      --surface: #ffffff;
+      --text: #1d2329;
+      --muted: #5d6872;
+      --accent: #175f75;
+      --accent-soft: #e9f2f4;
+      --line: #dfe4e6;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 248, 246, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(calc(100% - 40px), var(--max-width));
+      min-height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-name {
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 68vh;
+      padding: 92px 0 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      align-items: center;
+      gap: 72px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.3rem);
+    }
+
+    .subtitle {
+      max-width: 680px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+    }
+
+    .hero-links {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 8px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      color: var(--accent);
+      font-weight: 650;
+      font-size: 0.94rem;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .portrait-placeholder {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #ffffff 0 8%, transparent 9%),
+        linear-gradient(145deg, var(--accent-soft), #c9dfe4);
+      border: 1px solid #c9d9dc;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 4rem;
+      box-shadow: 0 18px 50px rgba(25, 66, 77, 0.12);
+    }
+
+    section {
+      padding: 78px 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 76px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .section-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .research-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .research-card {
+      min-height: 230px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .research-number {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    h3 {
+      margin: 24px 0 12px;
+      font-size: 1.38rem;
+    }
+
+    .research-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .simple-list {
+      margin: 38px 0 0 230px;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .simple-list li {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-label {
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .simple-list p {
+      margin: 0;
+    }
+
+    .contact-panel {
+      margin-top: 40px;
+      padding: 30px;
+      background: var(--accent);
+      border-radius: 16px;
+      color: white;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .contact-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .contact-panel a {
+      color: white;
+    }
+
+    footer {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+      padding: 34px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        font-size: 16px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-end;
+        gap: 10px 14px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 68px 0 58px;
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .portrait-placeholder {
+        width: 150px;
+        order: -1;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-card {
+        min-height: auto;
+      }
+
+      .simple-list {
+        margin-left: 0;
+      }
+
+      .simple-list li {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-name {
+        max-width: 130px;
+        line-height: 1.25;
+      }
+
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-name" href="#top">Carlos A. González-Gutiérrez</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Theoretical quantum physics</p>
+        <h1 id="page-title">Carlos A. González-Gutiérrez</h1>
+        <p class="subtitle">
+          I study quantum light–matter interactions, structured environments,
+          and collective excitations in magnetic materials.
+        </p>
+
+        <div class="hero-links">
+          <!-- Replace YOUR_EMAIL@UNAM.MX below with your institutional email. -->
+          <a class="button primary" href="mailto:YOUR_EMAIL@UNAM.MX">Email me</a>
+          <a class="button"
+             href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ"
+             target="_blank" rel="noopener">Google Scholar</a>
+          <a class="button"
+             href="https://orcid.org/0000-0002-1734-1405"
+             target="_blank" rel="noopener">ORCID</a>
+        </div>
+      </div>
+
+      <!-- Replace this circle with an image later:
+      <img src="portrait.jpg" alt="Portrait of Carlos A. González-Gutiérrez">
+      -->
+      <div class="portrait-placeholder" aria-label="Portrait placeholder">CG</div>
+    </section>
+
+    <section id="about">
+      <div class="section-heading">
+        <h2>About</h2>
+        <p class="section-intro">
+          I am a researcher at the Instituto de Ciencias Físicas of the
+          Universidad Nacional Autónoma de México (UNAM). My work combines
+          analytical theory and numerical calculations to understand how
+          quantum systems interact with electromagnetic and magnetic environments.
+        </p>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="section-heading">
+        <h2>Research</h2>
+        <p class="section-intro">
+          My research is organized around three closely connected areas.
+        </p>
+      </div>
+
+      <div class="research-grid">
+        <article class="research-card">
+          <span class="research-number">01</span>
+          <h3>Quantum light–matter interactions</h3>
+          <p>
+            Quantum emitters interacting with photons in cavities, waveguides,
+            and superconducting circuits.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <span class="research-number">02</span>
+          <h3>Quantum magnonics</h3>
+          <p>
+            Quantum spin waves and magnetic textures coupled to photons,
+            circuits, and localized spins.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <span class="research-number">03</span>
+          <h3>Structured environments</h3>
+          <p>
+            Engineered reservoirs producing long-range interactions,
+            localized states, and non-Markovian dynamics.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-heading">
+        <h2>Selected work</h2>
+        <p class="section-intro">
+          Recent themes include giant quantum emitters, ultrastrong waveguide
+          QED, magnetic vortex quantum cavities, and quantum dynamics in
+          structured photonic environments.
+        </p>
+      </div>
+
+      <ul class="simple-list">
+        <li>
+          <span class="list-label">Papers</span>
+          <p>
+            See my complete publication record on
+            <a href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ"
+               target="_blank" rel="noopener">Google Scholar</a>.
+          </p>
+        </li>
+        <li>
+          <span class="list-label">Students</span>
+          <p>
+            I supervise undergraduate and graduate projects in quantum optics,
+            open quantum systems, waveguide QED, and quantum magnonics.
+          </p>
+        </li>
+        <li>
+          <span class="list-label">Teaching</span>
+          <p>
+            I teach quantum mechanics, quantum optics, and open quantum systems.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <div class="section-heading">
+        <h2>Contact</h2>
+        <p class="section-intro">
+          Instituto de Ciencias Físicas, Universidad Nacional Autónoma de México,
+          Cuernavaca, Mexico.
+        </p>
+      </div>
+
+      <div class="contact-panel">
+        <p>
+          For research discussions, collaborations, or student projects,
+          please contact me by email.
+        </p>
+        <!-- Replace YOUR_EMAIL@UNAM.MX in both places. -->
+        <a href="mailto:YOUR_EMAIL@UNAM.MX">YOUR_EMAIL@UNAM.MX</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year">2026</span> Carlos A. González-Gutiérrez
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
