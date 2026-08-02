@@ -3,68 +3,110 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Carlos A. González-Gutiérrez — research in quantum optics, waveguide QED, and quantum magnonics.">
   <title>Carlos A. González-Gutiérrez | Quantum Physics</title>
+  <meta name="description" content="Carlos A. González-Gutiérrez — research in quantum optics, waveguide QED, and quantum magnonics.">
+  <link rel="canonical" href="https://carlosgg04.github.io/">
+
+  <!-- Social / SEO -->
+  <meta property="og:title" content="Carlos A. González-Gutiérrez | Quantum Physics">
+  <meta property="og:description" content="Research in quantum optics, waveguide QED, and quantum magnonics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carlosgg04.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Carlos A. González-Gutiérrez | Quantum Physics">
+  <meta name="twitter:description" content="Research in quantum optics, waveguide QED, and quantum magnonics.">
+
+  <!-- Favicon (add files to repo if you have them) -->
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Optional: load Inter (if you want remote font). Uncomment to use -->
+  <!--
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  -->
 
   <style>
     :root {
       --background: #f8f8f6;
       --surface: #ffffff;
-      --text: #1d2329;
-      --muted: #5d6872;
+      --text: #0f1720;
+      --muted: #58656c;
       --accent: #175f75;
       --accent-soft: #e9f2f4;
       --line: #dfe4e6;
       --max-width: 960px;
+      --radius: 14px;
+      --shadow-strong: 0 18px 50px rgba(25,66,77,0.12);
+      --shadow-soft: 0 6px 18px rgba(25,66,77,0.06);
     }
 
-    * {
-      box-sizing: border-box;
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0b0f12;
+        --surface: #071018;
+        --text: #e6eef2;
+        --muted: #99a6ab;
+        --accent: #3ec0d8;
+        --accent-soft: rgba(62,192,216,0.08);
+        --line: rgba(255,255,255,0.04);
+      }
+      body {
+        background: var(--background);
+      }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
       background: var(--background);
       color: var(--text);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Helvetica, Arial, sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+    /* Skip link for keyboard users */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: -999px;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      z-index: 200;
+    }
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
     }
 
-    a:hover {
-      text-decoration-thickness: 2px;
-    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(248, 248, 246, 0.92);
+      z-index: 30;
+      background: rgba(248,248,246,0.92);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(8px);
     }
-
     .nav {
       width: min(calc(100% - 40px), var(--max-width));
-      min-height: 64px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
+      padding: 12px 0;
     }
 
+    .nav-left { display:flex; align-items:center; gap:16px; }
     .nav-name {
       color: var(--text);
       font-weight: 700;
@@ -72,34 +114,38 @@
       letter-spacing: -0.02em;
     }
 
+    /* nav links: collapsible on small screens */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 8px;
+      border-radius: 10px;
+      color: var(--muted);
+    }
+
     .nav-links {
       display: flex;
-      flex-wrap: wrap;
       gap: 18px;
-      font-size: 0.92rem;
+      align-items:center;
+      font-size: 0.94rem;
     }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+    .nav-links a { color: var(--muted); text-decoration:none; }
+    .nav-links a:hover { color: var(--accent); }
 
     main {
       width: min(calc(100% - 40px), var(--max-width));
       margin: 0 auto;
+      padding-bottom: 40px;
     }
 
     .hero {
-      min-height: 68vh;
-      padding: 92px 0 72px;
+      min-height: 62vh;
+      padding: 84px 0 56px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 210px;
+      grid-template-columns: minmax(0,1fr) 210px;
       align-items: center;
-      gap: 72px;
+      gap: 56px;
     }
 
     .eyebrow {
@@ -107,262 +153,104 @@
       color: var(--accent);
       font-weight: 700;
       font-size: 0.82rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    h1, h2, h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 500;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight:500; line-height:1.12; }
+    h1 { margin:0; font-size: clamp(2.1rem, 6vw, 3.8rem); }
+    .subtitle { margin-top: 18px; color: var(--muted); max-width: 720px; font-size: clamp(1rem,2vw,1.18rem); }
 
-    h1 {
-      max-width: 720px;
-      margin: 0;
-      font-size: clamp(2.7rem, 7vw, 5.3rem);
-    }
-
-    .subtitle {
-      max-width: 680px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 2vw, 1.3rem);
-    }
-
-    .hero-links {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
+    .hero-links { margin-top: 28px; display:flex; gap:12px; flex-wrap:wrap; }
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 8px 16px;
-      border: 1px solid var(--accent);
-      border-radius: 999px;
-      color: var(--accent);
-      font-weight: 650;
-      font-size: 0.94rem;
-      text-decoration: none;
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:44px; padding:8px 14px; border-radius:999px;
+      border:1px solid var(--accent); color:var(--accent); font-weight:650; text-decoration:none;
+      background:transparent;
+    }
+    .button.primary { background:var(--accent); color:white; border-color:transparent; }
+    .button:hover { transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+
+    .portrait {
+      width: 100%;
+      max-width: 210px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: var(--shadow-strong);
+      background: linear-gradient(145deg, var(--accent-soft), #c9dfe4);
+      display: block;
     }
 
-    .button.primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-    }
-
+    /* fallback placeholder (used if no portrait.jpg) */
     .portrait-placeholder {
       aspect-ratio: 1;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 30%, #ffffff 0 8%, transparent 9%),
-        linear-gradient(145deg, var(--accent-soft), #c9dfe4);
-      border: 1px solid #c9d9dc;
       display: grid;
       place-items: center;
       color: var(--accent);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 4rem;
-      box-shadow: 0 18px 50px rgba(25, 66, 77, 0.12);
+      font-size: 3.6rem;
+      border: 1px solid #c9d9dc;
+      box-shadow: var(--shadow-strong);
+      background:
+        radial-gradient(circle at 35% 30%, #ffffff 0 8%, transparent 9%),
+        linear-gradient(145deg, var(--accent-soft), #c9dfe4);
     }
 
-    section {
-      padding: 78px 0;
-      border-top: 1px solid var(--line);
-      scroll-margin-top: 76px;
-    }
+    section { padding: 68px 0; border-top: 1px solid var(--line); scroll-margin-top: 76px; }
+    .section-heading { display:grid; grid-template-columns: 190px minmax(0,1fr); gap:40px; align-items:start; }
+    h2 { margin:0; font-size: clamp(1.6rem,3vw,2.6rem); }
+    .section-intro { margin:0; color:var(--muted); font-size:1.06rem; }
 
-    .section-heading {
-      display: grid;
-      grid-template-columns: 190px minmax(0, 1fr);
-      gap: 40px;
-      align-items: start;
-    }
+    .research-grid { margin-top: 36px; display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap:18px; }
+    .research-card { padding:20px; background:var(--surface); border-radius:var(--radius); border:1px solid var(--line); box-shadow: var(--shadow-soft); min-height:200px; }
+    .research-number { color:var(--accent); font-size:0.82rem; font-weight:800; letter-spacing:0.08em; }
 
-    h2 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3rem);
-    }
+    .simple-list { margin: 34px 0 0 230px; padding:0; list-style:none; border-top:1px solid var(--line); }
+    .simple-list li { display:grid; grid-template-columns: 110px minmax(0,1fr); gap:24px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .list-label { color:var(--accent); font-size:0.84rem; font-weight:750; letter-spacing:0.04em; text-transform:uppercase; }
 
-    .section-intro {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
+    .contact-panel { margin-top: 28px; padding: 26px; background: var(--accent); border-radius: 12px; color: white; display:grid; grid-template-columns: 1fr auto; gap: 20px; align-items:center; }
+    .contact-panel p { margin:0; color: rgba(255,255,255,0.9); }
 
-    .research-grid {
-      margin-top: 44px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
+    footer { width:min(calc(100% - 40px), var(--max-width)); margin:0 auto; padding: 32px 0 44px; border-top:1px solid var(--line); color:var(--muted); font-size:0.88rem; }
 
-    .research-card {
-      min-height: 230px;
-      padding: 24px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-
-    .research-number {
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
-    h3 {
-      margin: 24px 0 12px;
-      font-size: 1.38rem;
-    }
-
-    .research-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .simple-list {
-      margin: 38px 0 0 230px;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--line);
-    }
-
-    .simple-list li {
-      display: grid;
-      grid-template-columns: 110px minmax(0, 1fr);
-      gap: 24px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .list-label {
-      color: var(--accent);
-      font-size: 0.84rem;
-      font-weight: 750;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .simple-list p {
-      margin: 0;
-    }
-
-    .contact-panel {
-      margin-top: 40px;
-      padding: 30px;
-      background: var(--accent);
-      border-radius: 16px;
-      color: white;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .contact-panel p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.84);
-    }
-
-    .contact-panel a {
-      color: white;
-    }
-
-    footer {
-      width: min(calc(100% - 40px), var(--max-width));
-      margin: 0 auto;
-      padding: 34px 0 46px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
+    /* Responsive adjustments */
     @media (max-width: 760px) {
-      body {
-        font-size: 16px;
-      }
-
-      .nav {
-        align-items: flex-start;
-        padding: 16px 0;
-      }
-
-      .nav-links {
-        justify-content: flex-end;
-        gap: 10px 14px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 68px 0 58px;
-        grid-template-columns: 1fr;
-        gap: 42px;
-      }
-
-      .portrait-placeholder {
-        width: 150px;
-        order: -1;
-      }
-
-      .section-heading {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .research-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .research-card {
-        min-height: auto;
-      }
-
-      .simple-list {
-        margin-left: 0;
-      }
-
-      .simple-list li {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-
-      .contact-panel {
-        grid-template-columns: 1fr;
-      }
+      .nav-toggle { display:inline-flex; }
+      .nav-links { position: absolute; right: 12px; top: 64px; background: var(--surface); border: 1px solid var(--line); padding: 12px; border-radius: 10px; flex-direction: column; gap:8px; display: none; box-shadow: var(--shadow-soft); }
+      .nav-links.show { display:flex; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding: 64px 0 44px; }
+      .portrait { width: 150px; justify-self: center; }
+      .section-heading { grid-template-columns: 1fr; gap:18px; }
+      .research-grid { grid-template-columns: 1fr; }
+      .simple-list { margin-left: 0; }
+      .simple-list li { grid-template-columns: 1fr; gap:6px; }
+      .contact-panel { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 520px) {
-      .nav-name {
-        max-width: 130px;
-        line-height: 1.25;
-      }
-
-      .nav-links a:nth-child(2),
-      .nav-links a:nth-child(3) {
-        display: none;
-      }
+      .nav-name { max-width: 130px; line-height: 1.25; }
+      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display:none; }
     }
   </style>
 </head>
-
 <body>
-  <header class="site-header">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
     <nav class="nav" aria-label="Main navigation">
-      <a class="nav-name" href="#top">Carlos A. González-Gutiérrez</a>
-      <div class="nav-links">
+      <div class="nav-left">
+        <a class="nav-name" href="#top">Carlos A. González-Gutiérrez</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <div id="primaryNav" class="nav-links" role="navigation">
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#work">Work</a>
@@ -371,7 +259,7 @@
     </nav>
   </header>
 
-  <main id="top">
+  <main id="main" aria-labelledby="page-title">
     <section class="hero" aria-labelledby="page-title">
       <div>
         <p class="eyebrow">Theoretical quantum physics</p>
@@ -382,21 +270,17 @@
         </p>
 
         <div class="hero-links">
-          <!-- Replace YOUR_EMAIL@UNAM.MX below with your institutional email. -->
           <a class="button primary" href="mailto:carlosgg@icf.unam.mx">Email me</a>
-          <a class="button"
-             href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ"
-             target="_blank" rel="noopener">Google Scholar</a>
-          <a class="button"
-             href="https://orcid.org/0000-0002-1734-1405"
-             target="_blank" rel="noopener">ORCID</a>
+          <a class="button" href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+          <a class="button" href="https://orcid.org/0000-0002-1734-1405" target="_blank" rel="noopener noreferrer">ORCID</a>
+          <!-- CV (optional): replace href with your PDF path -->
+          <a class="button" href="/CarlosAGonzalez-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
         </div>
       </div>
 
-      <!-- Replace this circle with an image later:
-      <img src="portrait.jpg" alt="Portrait of Carlos A. González-Gutiérrez">
-      -->
-      <div class="portrait-placeholder" aria-label="Portrait placeholder">CG</div>
+      <!-- portrait: try loading portrait.jpg; if missing the placeholder remains visible -->
+      <img id="portraitImage" class="portrait" src="portrait.jpg" alt="Portrait of Carlos A. González-Gutiérrez" loading="lazy" onerror="this.style.display='none'">
+      <div id="portraitFallback" class="portrait-placeholder" aria-hidden="true">CG</div>
     </section>
 
     <section id="about">
@@ -414,37 +298,26 @@
     <section id="research">
       <div class="section-heading">
         <h2>Research</h2>
-        <p class="section-intro">
-          My research is organized around three closely connected areas.
-        </p>
+        <p class="section-intro">My research is organized around three closely connected areas.</p>
       </div>
 
       <div class="research-grid">
         <article class="research-card">
           <span class="research-number">01</span>
           <h3>Quantum light–matter interactions</h3>
-          <p>
-            Quantum emitters interacting with photons in cavities, waveguides,
-            and superconducting circuits.
-          </p>
+          <p>Quantum emitters interacting with photons in cavities, waveguides, and superconducting circuits.</p>
         </article>
 
         <article class="research-card">
           <span class="research-number">02</span>
           <h3>Quantum magnonics</h3>
-          <p>
-            Quantum spin waves and magnetic textures coupled to photons,
-            circuits, and localized spins.
-          </p>
+          <p>Quantum spin waves and magnetic textures coupled to photons, circuits, and localized spins.</p>
         </article>
 
         <article class="research-card">
           <span class="research-number">03</span>
           <h3>Structured environments</h3>
-          <p>
-            Engineered reservoirs producing long-range interactions,
-            localized states, and non-Markovian dynamics.
-          </p>
+          <p>Engineered reservoirs producing long-range interactions, localized states, and non-Markovian dynamics.</p>
         </article>
       </div>
     </section>
@@ -453,33 +326,22 @@
       <div class="section-heading">
         <h2>Selected work</h2>
         <p class="section-intro">
-          Recent themes include giant quantum emitters, ultrastrong waveguide
-          QED, magnetic vortex quantum cavities, and quantum dynamics in
-          structured photonic environments.
+          Recent themes include giant quantum emitters, ultrastrong waveguide QED, magnetic vortex quantum cavities, and quantum dynamics in structured photonic environments.
         </p>
       </div>
 
-      <ul class="simple-list">
+      <ul class="simple-list" aria-labelledby="work">
         <li>
           <span class="list-label">Papers</span>
-          <p>
-            See my complete publication record on
-            <a href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ"
-               target="_blank" rel="noopener">Google Scholar</a>.
-          </p>
+          <p>See my complete publication record on <a href="https://scholar.google.com/citations?hl=en&amp;user=pYtyGSIAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
         </li>
         <li>
           <span class="list-label">Students</span>
-          <p>
-            I supervise undergraduate and graduate projects in quantum optics,
-            open quantum systems, waveguide QED, and quantum magnonics.
-          </p>
+          <p>I supervise undergraduate and graduate projects in quantum optics, open quantum systems, waveguide QED, and quantum magnonics.</p>
         </li>
         <li>
           <span class="list-label">Teaching</span>
-          <p>
-            I teach quantum mechanics, quantum optics, and open quantum systems.
-          </p>
+          <p>I teach quantum mechanics, quantum optics, and open quantum systems.</p>
         </li>
       </ul>
     </section>
@@ -498,18 +360,48 @@
           For research discussions, collaborations, or student projects,
           please contact me by email.
         </p>
-        <!-- Replace YOUR_EMAIL@UNAM.MX in both places. -->
         <a href="mailto:carlosgg@icf.unam.mx">carlosgg@icf.unam.mx</a>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     © <span id="year">2026</span> Carlos A. González-Gutiérrez
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // nav toggle for small screens
+    (function () {
+      const btn = document.getElementById('navToggle');
+      const nav = document.getElementById('primaryNav');
+      btn && btn.addEventListener('click', function () {
+        const showing = nav.classList.toggle('show');
+        btn.setAttribute('aria-expanded', showing ? 'true' : 'false');
+      });
+      // close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+          nav.classList.remove('show');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    // portrait fallback: hide fallback if image loads
+    (function () {
+      const img = document.getElementById('portraitImage');
+      const fallback = document.getElementById('portraitFallback');
+      if (!img) return;
+      if (img.complete && img.naturalWidth > 0) {
+        fallback && (fallback.style.display = 'none');
+      } else {
+        img.addEventListener('load', () => { fallback && (fallback.style.display = 'none'); });
+        img.addEventListener('error', () => { img.style.display = 'none'; });
+      }
+    })();
   </script>
 </body>
 </html>
